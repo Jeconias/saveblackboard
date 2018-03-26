@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <title>Olá <?= $_SESSION['usuario']['nome']?>| Save BlackBoard!</title>
+    <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
+    <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="Uma maneira de salvar e assegurar que todas aquelas fotos tiradas do quadro-negro não seja perdidas, Save BlackBoard!"/>
+    <meta name="URL" content="<?=empty($_SERVER['HTTPS']) ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://' . $_SERVER['SERVER_NAME'];?>"/>
+    <meta name="language" content="portuguese"/>
+    <meta name="copyright" content="all rights"/>
+    <meta name="robots" content="INDEX, FOLLOW"/>
+    <meta name="revisit-after" content="3 days"/>
+    <meta name="reply-to" content="contato@olamundoweb.com.br"/>
+    <meta name="document-rights" content="Public"/>
+    <meta name="document-rating" content="General"/>
+    <meta name="document-state" content="Dynamic"/>
+    <meta http-equiv="Content-Language" content="PT-BR"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- CARREGAR CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/home.css'?>">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/animate.css'?>">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/fontawesome-all.min.css'?>">
+  </head>
+  <body>
+        <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="btn-modal">
+        <!-- <i id="download"  class="fas fa-download fa-2x"></i> -->
+        <i id="btn-close" class="fas fa-times fa-2x"></i>
+      </div>
+      <img class="img_modal-content"></img>
+    </div>
+    <form id="form_upload" method="post" enctype="multipart/form-data" style="display: none;">
+        <input id="files" type="file" name="files" value="" accept="image/jpeg, image/png, image/jpg">
+       <input type="submit" name="" value="send">
+    </form>
+    <nav class="navbar">
+        <ul>
+          <li id="upload"><i class="fas fa-upload fa-2x"></i></li>
+          <li><a href="https://github.com/jeconiassantos/saveblackboard" target="_blank"><i class="fab fa-github fa-2x"></i></a></li>
+          <li><a href="<?= PATH . '/login' ?>"><i class="fas fa-power-off fa-2x"></i></a></li>
+        </ul>
+    </nav>
+    <article class="article-img">
+      <?php
+      $a = 0;
+      $arr_count = count($imagens);
+      $ultimaData = null;
+      while ($a < $arr_count) {
+          if ($imagens[$a]['data'] != $ultimaData) {
+              echo '<section class="section-img">
+              <div class="div-hide" data-div="'.strftime('%d/%b', strtotime($imagens[$a]['data'])).'">
+              <h1>'.strftime('%d/%b', strtotime($imagens[$a]['data'])).'</h1>
+              <i class="fas fa-chevron-up"></i>
+              </div>';
+          }
+          echo '<div class="div-img">
+                  <img src="'.PATH.'/resources/users/'.$imagens[$a]['turma'].'/mine_'.$imagens[$a]['imagem'].'" alt="">
+                  <span data-id="'.$imagens[$a]['id'].'""><i class="fas fa-download fa-lg"></i></span>
+                </div>
+              ';
+          $ultimaData = $imagens[$a]['data'];
+          if (array_key_exists($a + 1, $imagens) && $imagens[$a + 1]['data'] != $ultimaData) {
+              echo '</section>';
+          } elseif (!array_key_exists($a + 1, $imagens)) {
+              echo '</section>';
+          }
+          $a++;
+      }
+      ?>
+    </article>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="<?= PATH.'/resources/assets/js/jquery.ajax.progress.js'?>"></script>
+    <script src="<?= PATH.'/resources/assets/js/notify.min.js'?>"></script>
+    <script src="<?= PATH.'/resources/assets/js/home.js'?>"></script>
+  </body>
+</html>

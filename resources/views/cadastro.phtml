@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cadastro | SaveBlackBoard</title>
+    <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
+    <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="Cadastre sua turma e Save BlackBoard!"/>
+    <meta name="URL" content="<?=empty($_SERVER['HTTPS']) ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://' . $_SERVER['SERVER_NAME'];?>"/>
+    <meta name="language" content="portuguese"/>
+    <meta name="copyright" content="all rights"/>
+    <meta name="robots" content="INDEX, FOLLOW"/>
+    <meta name="revisit-after" content="3 days"/>
+    <meta name="reply-to" content="contato@olamundoweb.com.br"/>
+    <meta name="document-rights" content="Public"/>
+    <meta name="document-rating" content="General"/>
+    <meta name="document-state" content="Dynamic"/>
+    <meta http-equiv="Content-Language" content="PT-BR"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- CARREGAR CSS -->
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/cadastro.css'?>">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/fontawesome-all.min.css'?>">
+  </head>
+  <body>
+    <section class="section-form">
+      <form id="form_turmas" method="post">
+        <h1>Cadastre sua turma!</h1>
+        <input type="text" name="nome" value="" maxlength="20" placeholder="Nome da turma" required autocomplete="off">
+        <input id="email" type="email" name="email" value="" maxlength="50" placeholder="email" required autocomplete="off">
+        <input type="password" name="senha" value="" maxlength="20" placeholder="Senha" required>
+        <input type="password" name="senha" value="" maxlength="20" placeholder="Confirme a senha" required>
+        <button type="submit" id="submit" class="" name="send">Registrar!</button>
+        <a href="<?=PATH.'/login'?>"><i class="fas fa-arrow-left"></i> Voltar</a>
+      </form>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="<?= PATH.'/resources/assets/js/cadastro.js'?>"></script>
+</html>

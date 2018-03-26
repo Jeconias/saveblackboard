@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <title>Bem-Vindo(a) | SaveBlackBoard</title>
+    <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
+    <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="Faça login para acessar suas imagens salvas no Save BlackBoard!"/>
+    <meta name="URL" content="<?=empty($_SERVER['HTTPS']) ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://' . $_SERVER['SERVER_NAME'];?>"/>
+    <meta name="language" content="portuguese"/>
+    <meta name="copyright" content="all rights"/>
+    <meta name="robots" content="INDEX, FOLLOW"/>
+    <meta name="revisit-after" content="3 days"/>
+    <meta name="reply-to" content="contato@olamundoweb.com.br"/>
+    <meta name="document-rights" content="Public"/>
+    <meta name="document-rating" content="General"/>
+    <meta name="document-state" content="Dynamic"/>
+    <meta http-equiv="Content-Language" content="PT-BR"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- CARREGAR CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/animate.css'?>">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/login.css'?>">
+  </head>
+  <body>
+    <section class="section-form">
+      <form id="form_login" method="post">
+        <?php
+        if (isset($_GET['s']) && $_GET['s'] == 'true') {
+          echo '<p style="text-align: center; color: green;">Cadastrado com successo!</p>';
+        }elseif (isset($_GET['s']) && $_GET['s'] == 'false') {
+          echo '<p style="text-align: center; color: red;">Não foi possível efetuar o cadastro!</p>';
+        }
+        ?>
+        <h1>Save BlackBoard</h1>
+        <input id="email" type="email" name="email" value="<?php if(isset($_COOKIE['turma'])){echo $_COOKIE['turma']; }?>" maxlength="20" placeholder="Email da turma..." required>
+        <input id="password" type="password" name="senha" value="" maxlength="20" placeholder="Senha..." required>
+        <button type="submit" class="" name="send">Entrar</button>
+        <a href="<?=PATH.'/cadastro'?>">Cadastre sua turma</a>
+      </form>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="<?= PATH.'/resources/assets/js/login.js'?>"></script>
+  <script src="<?= PATH.'/resources/assets/js/notify.min.js'?>"></script>
+</html>
