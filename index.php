@@ -34,5 +34,10 @@ $container['FileUpload'] = function($c){
 	return $upload;
 };
 
+$container['mailer'] = function($c){
+	$email = new \PHPMailer\PHPMailer\PHPMailer(true);
+	return $email;
+};
+
 require('application/controller/RouterController.php');
 $app->run();

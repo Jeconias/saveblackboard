@@ -6,7 +6,7 @@
     <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
     <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Faça login para acessar suas imagens salvas no Save BlackBoard!"/>
+    <meta name="description" content="Uma maneira de salvar e assegurar que todas aquelas fotos tiradas do quadro-negro não sejam perdidas, Save BlackBoard!"/>
     <meta name="URL" content="<?=empty($_SERVER['HTTPS']) ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://' . $_SERVER['SERVER_NAME'];?>"/>
     <meta name="language" content="portuguese"/>
     <meta name="copyright" content="all rights"/>
@@ -22,6 +22,7 @@
     <!-- CARREGAR CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/animate.css'?>">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/fontawesome-all.min.css'?>">
     <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/login.css'?>">
   </head>
   <body>
@@ -32,15 +33,30 @@
           echo '<p style="text-align: center; color: green;">Cadastrado com successo!</p>';
         }elseif (isset($_GET['s']) && $_GET['s'] == 'false') {
           echo '<p style="text-align: center; color: red;">Não foi possível efetuar o cadastro!</p>';
+        }elseif (isset($_GET['reset']) && $_GET['reset'] == 'true') {
+          echo '<p style="text-align: center; color: green;">Senha alterada!</p>';
+        }elseif (isset($_GET['reset']) && $_GET['reset'] == 'false') {
+          echo '<p style="text-align: center; color: red;">Não foi possível alterar a senha!</p>';
         }
         ?>
         <h1>Save BlackBoard</h1>
-        <input id="email" type="email" name="email" value="<?php if(isset($_COOKIE['turma'])){echo $_COOKIE['turma']; }?>" maxlength="20" placeholder="Email da turma..." required>
-        <input id="password" type="password" name="senha" value="" maxlength="20" placeholder="Senha..." required>
+        <input id="email" type="email" name="email" value="<?php if(isset($_COOKIE['turma'])){echo $_COOKIE['turma']; }?>" placeholder="Email da turma..." required autocomplete="off">
+        <input id="password" type="password" name="senha" value="" maxlength="20" minlength="6" placeholder="Senha..." required>
+        <a href="<?=PATH.'/recovery/password'?>" class="a-resetpass">Esqueceu sua senha? Recupere aqui</a>
         <button type="submit" class="" name="send">Entrar</button>
-        <a href="<?=PATH.'/cadastro'?>">Cadastre sua turma</a>
+        <a href="<?=PATH.'/cadastro'?>" class="a-cadastro">Cadastre sua turma</a>
       </form>
     </section>
+    <article class="apresentacao">
+      <section class="page01">
+        <img src="<?=PATH.'/resources/assets/images/boardblack.png'?>" alt="Quadro-Negro">
+        <p>Sua turma tira fotos do quadro-negro? Garanta essas imagens sempre com você!</p>
+      </section>
+      <section class="page02">
+        <a href="https://github.com/jeconiassantos/saveblackboard" target="_blank"><i class="fab fa-github fa-7x"></i></a>
+        <p>Esse é um projeto apenas para experiência. Se gostaria de melhorar, visite o GitHub</p>
+      </section>
+    </article>
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="<?= PATH.'/resources/assets/js/login.js'?>"></script>

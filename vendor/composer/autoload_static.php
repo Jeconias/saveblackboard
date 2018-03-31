@@ -21,6 +21,7 @@ class ComposerStaticInitfad6e1a8c777e55c48e33a0e7a4676e9
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'PlusCrud\\Crud\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'I' => 
         array (
@@ -56,6 +57,10 @@ class ComposerStaticInitfad6e1a8c777e55c48e33a0e7a4676e9
         'PlusCrud\\Crud\\' => 
         array (
             0 => __DIR__ . '/..' . '/pluscrud/crud/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Interop\\Container\\' => 
         array (

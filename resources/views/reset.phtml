@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nova Senha | SaveBlackBoard</title>
+    <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
+    <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="Solicite a recuperação de senha do seu BlackBoard!"/>
+    <meta name="URL" content="<?=empty($_SERVER['HTTPS']) ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://' . $_SERVER['SERVER_NAME'];?>"/>
+    <meta name="language" content="portuguese"/>
+    <meta name="copyright" content="all rights"/>
+    <meta name="robots" content="INDEX, FOLLOW"/>
+    <meta name="revisit-after" content="3 days"/>
+    <meta name="reply-to" content="contato@olamundoweb.com.br"/>
+    <meta name="document-rights" content="Public"/>
+    <meta name="document-rating" content="General"/>
+    <meta name="document-state" content="Dynamic"/>
+    <meta http-equiv="Content-Language" content="PT-BR"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- CARREGAR CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/reset.css'?>">
+  </head>
+  <body>
+    <section class="section-form">
+      <form id="form_reset" method="post">
+        <h1>Nova Senha</h1>
+        <input type="password" id="senha" name="senha" value="" maxlength="20" autofocus placeholder="Nova senha" required pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{8,}$" title="É preciso ter: Uma letra minúscula, maiuscula, números, caracteres especiais e no mínimo 6 digitos">
+        <input type="password" id="senha_" name="senha_" value="" autofocus placeholder="Confirme a senha" required>
+        <button type="submit" class="" name="send">Salvar</button>
+      </form>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="<?= PATH.'/resources/assets/js/reset.js'?>"></script>
+  <script type="text/javascript">
+    var password = document.getElementById("senha")
+    ,confirm_password = document.getElementById("senha_");
+    function validatePassword(){
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Senhas diferentes!");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+  </script>
+</html>

@@ -85,6 +85,22 @@ final class home
         return file_get_contents($diretorio);
     }
 
+    public function remove()
+    {
+      $remove = $this->container->crud;
+      //PEGANDO O NOME DO ARQUIVO
+      $remove->setSelect('imagens', array('imagem'), array('id' => $_POST['id']));
+      $nome = $remove->getSelect();
+      //DELETANDO O REGISTRO DO BANCO DE DADOS
+      $remove->setDelete('imagens', array('id' => $_POST['id']));
+      if (count($remove->getDelete()) >= 1) {
+        //REMOVENDO O ARQUIVO DO SERVIDOR
+        unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/resources/users/'.$_SESSION['usuario']['id'].'/'.$nome[0]['imagem']);
+        unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/resources/users/'.$_SESSION['usuario']['id'].'/mine_'.$nome[0]['imagem']);
+        return json_encode(true);
+      }
+        return json_encode(false);
+    }
     private function codeGenerator()
     {
         $string = 'abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';

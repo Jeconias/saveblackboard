@@ -2,11 +2,11 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8">
-    <title>Olá <?= $_SESSION['usuario']['nome']?>| Save BlackBoard!</title>
+    <title>Olá <?= ucwords($_SESSION['usuario']['nome'])?>| Save BlackBoard!</title>
     <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
     <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Uma maneira de salvar e assegurar que todas aquelas fotos tiradas do quadro-negro não seja perdidas, Save BlackBoard!"/>
+    <meta name="description" content="Uma maneira de salvar e assegurar que todas aquelas fotos tiradas do quadro-negro não sejam perdidas, Save BlackBoard!"/>
     <meta name="URL" content="<?=empty($_SERVER['HTTPS']) ? 'http://'.$_SERVER['SERVER_NAME'] : 'https://' . $_SERVER['SERVER_NAME'];?>"/>
     <meta name="language" content="portuguese"/>
     <meta name="copyright" content="all rights"/>
@@ -29,22 +29,25 @@
         <!-- The Modal -->
     <div id="myModal" class="modal">
       <div class="btn-modal">
-        <!-- <i id="download"  class="fas fa-download fa-2x"></i> -->
+        <i id="btn-remove" class="fas fa-trash-alt fa-2x"></i>
         <i id="btn-close" class="fas fa-times fa-2x"></i>
       </div>
-      <img class="img_modal-content"></img>
+      <img class="img_modal-content">
     </div>
     <form id="form_upload" method="post" enctype="multipart/form-data" style="display: none;">
         <input id="files" type="file" name="files" value="" accept="image/jpeg, image/png, image/jpg">
        <input type="submit" name="" value="send">
     </form>
     <nav class="navbar">
+      <p><?= $_SESSION['usuario']['login'] ?></p>
         <ul>
-          <li id="upload"><i class="fas fa-upload fa-2x"></i></li>
-          <li><a href="https://github.com/jeconiassantos/saveblackboard" target="_blank"><i class="fab fa-github fa-2x"></i></a></li>
-          <li><a href="<?= PATH . '/login' ?>"><i class="fas fa-power-off fa-2x"></i></a></li>
+          <li id="upload" title="Subir imagem"><i class="fas fa-upload fa-2x"></i></li>
+          <li id="li-github" title="GitHub Jeconias Santos"><a href="https://github.com/jeconiassantos/saveblackboard" target="_blank"><i class="fab fa-github fa-2x"></i></a></li>
+          <li id="li-close" title="Encerrar sessão" ><a href="<?= PATH . '/login' ?>"><i class="fas fa-power-off fa-2x"></i></a></li>
         </ul>
+        <span id="span-loading">100%</span>
     </nav>
+    <div class="progress-bar"></div>
     <article class="article-img">
       <?php
       $a = 0;

@@ -1,6 +1,6 @@
 <?php
 
-$config['displayErrorDetails'] = false;
+$config['displayErrorDetails'] = true;
 $config['addContentLengthHeader'] = false;
 
 //CONEXÃO COM O BANCO DE DADOS GLOBALCM
