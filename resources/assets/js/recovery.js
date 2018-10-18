@@ -8,7 +8,7 @@ $('#form_recovery').submit(function(e) {
   var dados = $(this).serialize();
 
   $.ajax({
-    url: '/' + pathArray[1] + '/recovery/password',
+    url: '/' + pathArray[1] + '/' + pathArray[2] + '/recovery/password',
     method: 'post',
     type: 'json',
     data: dados,
@@ -20,12 +20,10 @@ $('#form_recovery').submit(function(e) {
     success: function(data) {
       console.log(data);
       var obj = jQuery.parseJSON(data);
-      if (obj === true) {
-        Mensagem('Um email foi enviado para você!', 'success');
-      }else if (obj == false) {
-        Mensagem('Problema ao enviar o email, entre em contato com o ADM.', 'danger');
-      }else {
-        Mensagem(obj, 'danger');
+      if (obj['status'] === true) {
+        Mensagem(obj['msg'], 'success');
+      }else{
+        Mensagem(obj['msg'], 'danger');
       }
       $('#email').val('').attr('disabled', false);
       $('#form_recovery button, .g-recaptcha').show();

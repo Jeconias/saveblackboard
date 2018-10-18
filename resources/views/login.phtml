@@ -2,7 +2,7 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8">
-    <title>Bem-Vindo(a) | SaveBlackBoard</title>
+    <title><?= $welcomeTitle ?> | SaveBlackBoard</title>
     <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
     <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -26,6 +26,27 @@
     <link rel="stylesheet" href="<?= PATH.'/resources/assets/css/login.css'?>">
   </head>
   <body>
+    <header class="header-language">
+      <ul class="col-md-1 offset-md-11">
+        <li class="idiomas-action" id="a"><?= $languages ?></li>
+        <div class="toHidden">
+          <ul class="list-idiomas">
+            <li>
+              <a href="<?= PATH.'/pt/login'?>">
+                <img src="<?= PATH.'/resources/assets/images/icon-brazil.png'?>">
+                <p>PT</p>
+              </a>
+            </li>
+            <li>
+              <a href="<?= PATH.'/en/login'?>">
+                <img src="<?= PATH.'/resources/assets/images/icon-eua.png'?>">
+                <p>EN</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </header>
     <section class="section-form">
       <form id="form_login" method="post">
         <?php
@@ -40,21 +61,23 @@
         }
         ?>
         <h1>Save BlackBoard</h1>
-        <input id="email" type="email" name="email" value="<?php if(isset($_COOKIE['turma'])){echo $_COOKIE['turma']; }?>" placeholder="Email da turma..." required autocomplete="off">
-        <input id="password" type="password" name="senha" value="" maxlength="20" minlength="6" placeholder="Senha..." required>
-        <a href="<?=PATH.'/recovery/password'?>" class="a-resetpass">Esqueceu sua senha? Recupere aqui</a>
-        <button type="submit" class="" name="send">Entrar</button>
-        <a href="<?=PATH.'/cadastro'?>" class="a-cadastro">Cadastre sua turma</a>
+        <input id="email" type="email" name="email" value="<?php if(isset($_COOKIE['turma'])){echo $_COOKIE['turma']; }?>" placeholder="<?= $classEmail ?>" required autocomplete="off">
+        <input id="password" type="password" name="senha" value="" maxlength="20" minlength="6" placeholder="<?= $key ?>" required>
+        <a href="<?=PATH.'/'.$initial.'/recovery/password'?>" class="a-resetpass"><?= $forgetPass ?></a>
+        <button type="submit" class="" name="send"><?= $access ?></button>
+        <a href="<?=PATH.'/'.$initial.'/cadastro'?>" class="a-cadastro"><?= $register ?></a>
       </form>
     </section>
     <article class="apresentacao">
       <section class="page01">
         <img src="<?=PATH.'/resources/assets/images/boardblack.png'?>" alt="Quadro-Negro">
-        <p>Sua turma tira fotos do quadro-negro? Garanta essas imagens sempre com você!</p>
+        <p><?= $sectionOne ?></p>
       </section>
       <section class="page02">
-        <a href="https://github.com/jeconiassantos/saveblackboard" target="_blank"><i class="fab fa-github fa-7x"></i></a>
-        <p>Esse é um projeto apenas para experiência. Se gostaria de melhorar, visite o GitHub</p>
+        <a href="https://github.com/jeconiassantos/saveblackboard" target="_blank">
+          <i class="fab fa-github fa-7x"></i>
+        </a>
+        <p><?= $sectionTwo ?></p>
       </section>
     </article>
   </body>

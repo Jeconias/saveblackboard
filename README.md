@@ -4,8 +4,14 @@ Esse é um projeto apenas para ganhar experiência e talvez facilitar a vida de 
 
 `SaveBlackBoard é uma maneira de salvar e assegurar que todas aquelas fotos tiradas do quadro-negro não sejam perdidas, Save BlackBoard!`
 
+
+- v1.0 
+
+Agora o sistema suporta traduções;
+Implementado a tradução para English.
+
 Irei fazer uma pequena documentação do projeto apenas no próximo update!
-Continua no próximo episódio...
+Continua no próximo episódio......
 
 
 #### O que está sendo usando no projeto

@@ -14,18 +14,22 @@ $(document).ready(function() {
   });
 
   //ESCONDER IMAGENS DA SECTION SELECIONADA
-    $('.div-hide').on('click', function() {
-      var esconder = $(this).parents('.section-img').find('.div-img');
+  $('.div-hide').on('click', function() {
+    var esconder = $(this).parents('.section-img').find('.div-img');
 
-      if (esconder.is(':hidden')) {
-        $(this).find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-      } else {
-        $(this).find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
-      }
-      esconder.slideToggle('slow');
-    });
-
-
+    if (esconder.is(':hidden')) {
+      $(this).find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+      $(this).css({'border-bottom': '2px solid rgba(218, 55, 30, 0.60)'});
+    } else {
+      $(this).find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+      $(this).css({'border-bottom': '2px solid #D7DDE3'});
+    }
+    esconder.slideToggle('slow');
+  });
+  // COMEÇAR COM AS DIVS OCULTAS
+  $('.div-img').each(function(){
+    $(this).hide();
+  });
 
   $('#btn-close, .modal').on('click', function() {
     if ($(this).attr('id') == 'myModal' || $(this).attr('id') == 'btn-close') {
@@ -37,7 +41,6 @@ $(document).ready(function() {
   $('.article-img').on('click', 'span', function(e) {
     e.preventDefault();
     var dataid = $(this).attr('data-id');
-    console.log(dataid);
     window.location.href = '/saveblackboard/download/' + dataid;
   });
 
@@ -48,7 +51,7 @@ $(document).ready(function() {
   $('#files:file').on('change', function(e) {
     e.preventDefault();
     $.ajax({
-      url: '/saveblackboard/upload',
+      url: '/' + pathArray[1] + '/' + pathArray[2] + '/upload',
       method: 'post',
       type: 'json',
       cache: false,
@@ -74,7 +77,7 @@ $(document).ready(function() {
         if (obj['status'] == true) {
           $('.progress-bar').css('width', '0');
           $('#span-loading').css('opacity', '0');
-          Mensagem('Imagem enviada!', 'success');
+          Mensagem(obj['msg'], 'success');
           var data_div = $('.article-img [data-div="' + obj['data'] + '"]').val();
           if (data_div == '') {
             $('.article-img [data-div="' + obj['data'] + '"]').after('<div class="div-img"><img src="' + obj['file'] + '" alt=""><span data-id="' + obj['id_file'] + '"><i class="fas fa-download fa-lg"></i></span></div>');
@@ -82,7 +85,9 @@ $(document).ready(function() {
             $('.article-img').prepend('<section class="section-img"><div class="div-hide" data-div="' + obj['data'] + '"><h1>' + obj['data'] + '</h1><i class="fas fa-chevron-up"></i></div><div class="div-img"><img src="' + obj['file'] + '" alt=""><span data-id="' + obj['id_file'] + '"><i class="fas fa-download fa-lg"></i></span></div></section>');
           }
         } else {
-          Mensagem(obj, 'warning');
+          $('.progress-bar').css('width', '0');
+          $('#span-loading').css('opacity', '0');
+          Mensagem(obj['error'], 'warning');
         }
       },
       error: function(data) {
@@ -95,7 +100,7 @@ $(document).ready(function() {
   $('#btn-remove').on('click', function(e) {
     e.preventDefault();
     $.ajax({
-      url: '/saveblackboard/remove',
+      url: '/' + pathArray[1] + '/' + pathArray[2] + '/remove',
       method: 'post',
       type: 'json',
       data: ({
@@ -103,11 +108,11 @@ $(document).ready(function() {
       }),
       success: function(xhr) {
         var obj = jQuery.parseJSON(xhr);
-        if (obj == true) {
-          Mensagem('Imagem removida!', 'danger');
+        if (obj['status'] == true) {
+          Mensagem(obj['msg'], 'danger');
           $('*[data-id="'+dataid+'"]').parent('.div-img').remove();
         } else {
-          Mensagem(obj, 'warning');
+          Mensagem(obj['msg'], 'warning');
         }
       },
       error: function(data) {
@@ -125,7 +130,7 @@ function Mensagem(text, type) {
     // settings
     type: type,
     position: 'fixed',
-    delay: 5000,
+    delay: 3000,
     timer: 1000,
     mouse_over: 'pause',
     animate: {
@@ -133,8 +138,8 @@ function Mensagem(text, type) {
       exit: 'animated fadeOutUp'
     },
     placement: {
-      from: "top",
-      align: "center"
+      from: "bottom",
+      align: "right"
     },
 
   });

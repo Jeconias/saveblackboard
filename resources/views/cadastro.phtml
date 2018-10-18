@@ -2,7 +2,7 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8">
-    <title>Cadastro | SaveBlackBoard</title>
+    <title><?= $registerTitle ?> | SaveBlackBoard</title>
     <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
     <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -26,13 +26,13 @@
   <body>
     <section class="section-form">
       <form id="form_turmas" method="post">
-        <h1>Cadastre sua turma!</h1>
-        <input type="text" name="nome" value="" maxlength="20" placeholder="Nome da turma" required autocomplete="off">
-        <input id="email" type="email" name="email" value="" maxlength="50" placeholder="email" required autocomplete="off">
-        <input type="password" id="senha" name="senha" value="" maxlength="20" minlength="6" placeholder="Senha" required pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{6,}$" title="É preciso ter: Uma letra minúscula, maiuscula, números, caracteres especiais e no mínimo 6 digitos">
-        <input type="password" id="senha_" name="senha_" value="" placeholder="Confirme a senha" required>
-        <button type="submit" id="submit" class="" name="send">Registrar!</button>
-        <a href="<?=PATH.'/login'?>"><i class="fas fa-arrow-left"></i> Voltar</a>
+        <h1><?= $register.'!' ?></h1>
+        <input type="text" name="nome" value="" maxlength="20" placeholder="<?= $className ?>" required autocomplete="off">
+        <input id="email" type="email" name="email" value="" maxlength="50" placeholder="<?= $email ?>" required autocomplete="off">
+        <input type="password" id="senha" name="senha" value="" maxlength="20" minlength="6" placeholder="<?= $key ?>" required pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\S+$).{6,}$" title="É preciso ter: Uma letra minúscula, maiuscula, números, caracteres especiais e no mínimo 6 digitos">
+        <input type="password" id="senha_" name="senha_" value="" placeholder="<?= $confirmPass ?>" required>
+        <button type="submit" id="submit" class="" name="send"><?= $buttonRegister ?></button>
+        <a href="<?=PATH.'/'.$initial.'/login'?>"><i class="fas fa-arrow-left"></i> <?= $buttonBack ?></a>
       </form>
     </section>
   </body>

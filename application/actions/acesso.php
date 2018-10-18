@@ -17,7 +17,7 @@ final class acesso
             unset($_SESSION['usuario']);
             session_destroy();
         }
-        return $this->container->views->render($response, 'login.phtml');
+        return $this->container->views->render($response, 'login.phtml', $this->container->idioma->getLanguage());
     }
     public function postLogin($request, $response)
     {
@@ -46,9 +46,15 @@ final class acesso
 
             //SETANDO COOKIE PARA LOGIN
             setcookie('turma', $email, time() + 60 * 60 * 24 * 7);
-            return json_encode(true);
+            return json_encode(array(
+                'status' => true,
+                'msg' => ''
+            ));
         } else {
-            return json_encode('Senha incorreta');
+            return json_encode(array(
+                'status' => false,
+                'msg' => $this->container->idioma->getLanguageFilter('keyIncorrect')
+            ));
         }
     }
 
@@ -58,12 +64,14 @@ final class acesso
         // $crud->setSelect('imagens', array('*'), array('turma' => $_SESSION['usuario']['id']));
         $crud->setSelectsql('SELECT * FROM imagens WHERE turma=:id ORDER BY data DESC', array('id' => $_SESSION['usuario']['id']));
         $dados['imagens'] = $crud->getSelect();
+        $dados['language'] = $this->container->idioma->getLanguage();
+        
         return $this->container->views->render($response, 'home.phtml', $dados);
     }
 
     public function getNovaturma($request, $response)
     {
-        return $this->container->views->render($response, 'cadastro.phtml');
+        return $this->container->views->render($response, 'cadastro.phtml', $this->container->idioma->getLanguage());
     }
 
     public function postNovaturma($request, $response)
@@ -117,6 +125,7 @@ final class acesso
 
     public function getResetpassword($request, $response)
     {
+
         $email64 = $request->getAttribute('email');
         $code = $request->getAttribute('code');
 
@@ -152,7 +161,8 @@ final class acesso
 
     public function getRecoverypassword($request, $response)
     {
-        return $this->container->views->render($response, 'recovery.phtml');
+
+        return $this->container->views->render($response, 'recovery.phtml', $this->container->idioma->getLanguage());
     }
 
     public function postRecoverypassword($request, $response)
@@ -209,18 +219,33 @@ final class acesso
                       $mail->Body    = $viewEmail;
 
                       $mail->send();
-                      return json_encode(true);
+                      return json_encode(array(
+                            'status' => true,
+                            'msg' => $this->container->idioma->getLanguageFilter('emailFound')
+                      ));
                     } catch (Exception $e) {
-                      return json_encode(false);
+                      return json_encode(array(
+                            'status' => false,
+                            'msg' => 'Problema ao enviar o email'
+                        ));
                       $return =  'Mailer Error: ' . $mail->ErrorInfo;
                     }
                 }
-                return json_encode('Email não encontrado!');
+                return json_encode(array(
+                    'status' => false,
+                    'msg' => $this->container->idioma->getLanguageFilter('emailNotFound')
+                ));
             } else {
-                return json_encode('Tem certeza que você não é um Robô?!');
+                return json_encode(array(
+                    'status' => false,
+                    'msg' => $this->container->idioma->getLanguageFilter('robotAssurance'). '\'~\''
+                ));
             }
         } else {
-            return json_encode('Confirme que você não é um Robô! ;D');
+            return json_encode(array(
+                'status' => false,
+                'msg' => 'Confirme que você não é um Robô! ;D'
+            ));
         }
     }
 
@@ -239,9 +264,9 @@ final class acesso
     {
       if ($data != null) {
           if (date('m-d') == date('m-d', strtotime($data))) {
-              return 'Seu último login foi hoje ás '.strftime('%R', strtotime($data));
+              return 'Seu último login foi hoje às '.strftime('%R', strtotime($data));
           } elseif (date('m-d', strtotime($data)) == date('m-d', strtotime('-1 day'))) {
-              return 'Seu último login foi ontem ás '.strftime('%R', strtotime($data));
+              return 'Seu último login foi ontem às '.strftime('%R', strtotime($data));
           }
           return 'Seu último login foi dia '.strftime('%d de %h ás %R', strtotime($data));
       }

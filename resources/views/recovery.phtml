@@ -2,7 +2,7 @@
 <html lang="pt">
   <head>
     <meta charset="UTF-8">
-    <title>Recuperar Senha | SaveBlackBoard</title>
+    <title><?= $recoverPass ?> | SaveBlackBoard</title>
     <link rel="icon" href="<?= PATH.'/resources/assets/images/favicon.png'?>" by="https://www.flaticon.com/authors/pixel-buddha"/>
     <meta name="author" content="jeconiass2009@hotmail.com, +55 (84)9 9438-1350"/>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
@@ -32,12 +32,12 @@
           echo '<p style="text-align: center; color: red;">Código de recuperação inválido, solicite um novo!</p>';
         }
         ?>
-        <h1>Recupere sua Senha</h1>
-        <input id="email" type="email" name="email" value="" placeholder="Email da turma..." required autofocus autocomplete="off">
+        <h1><?= $recoverPass ?></h1>
+        <input id="email" type="email" name="email" value="" placeholder="<?= $classEmail ?>" required autofocus autocomplete="off">
         <div class="g-recaptcha" data-theme="light" data-sitekey="6Ldsl08UAAAAAMaryk9xAZtVPZnldMGR3g1DT0GP"></div>
         <div class="gif-loading" source-gif="https://loading.io/spinner/spin/-ajax-spinner-gif"></div>
-        <button type="submit" class="" name="send">Enviar</button>
-        <a href="<?=PATH.'/login'?>"><i class="fas fa-arrow-left"></i> Voltar</a>
+        <button type="submit" class="" name="send"><?= $send ?></button>
+        <a href="<?=PATH.'/'.$initial.'/login'?>"><i class="fas fa-arrow-left"></i><?= $buttonBack ?></a>
       </form>
     </section>
   </body>

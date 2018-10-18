@@ -22,7 +22,6 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
-
 $container['views'] = new \Slim\Views\PhpRenderer('resources/views/');
 
 $container['crud'] = function ($c) {
@@ -37,6 +36,11 @@ $container['FileUpload'] = function($c){
 $container['mailer'] = function($c){
 	$email = new \PHPMailer\PHPMailer\PHPMailer(true);
 	return $email;
+};
+$container['idioma'] = function($c){
+    $lang = new \Application\classes\Language();
+    $lang->changeLanguage(explode('/', $c['request']->getUri()->getPath())[0]);
+    return $lang;
 };
 
 require('application/controller/RouterController.php');

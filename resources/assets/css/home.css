@@ -14,7 +14,7 @@ body, html {
   display: block;
   width: 100%;
   height: auto;
-  background-color: #ECECEC;
+  background-color: rgba(234, 202, 47, 0.66);
   border-bottom: 1px solid #D7DDE3;
   padding: 0 5px;
   padding-top: 5px;
@@ -55,32 +55,19 @@ body, html {
 }
 .navbar > ul > li {
   position: relative;
-  color: #D7DDE3;
+  color: #0c2f59ff;
   margin-right: 2%;
   margin-left: 2%;
   list-style: none;
-}
-.navbar > ul > li > a {
-  color: #D7DDE3;
-}
-
-.navbar > ul > li:hover {
   cursor: pointer;
 }
-
-#li-close:hover i {
-  transition: 0.5s;
-  color: #c0392b;
+.navbar > ul > li > a {
+  color: #0c2f59ff;
 }
 
-#upload:hover i {
+#li-close:hover i, #upload:hover i, #li-github:hover i{
+  color: #0c2f599e;
   transition: 0.5s;
-  color: #27ae60;
-}
-
-#li-github:hover i {
-  transition: 0.5s;
-  color: #2c3e50;
 }
 
 .progress-bar {
@@ -122,13 +109,15 @@ body, html {
   width: 100%;
   padding: 0.5% 2%;
   border-radius: 3px;
-  background-color: #ECECEC;
-  border-bottom: 1px solid #D7DDE3;
+  background-color: #4e67862e;
+  border-bottom: 2px solid #D7DDE3;
   cursor: pointer;
+  color: #0c2f59ff;
+  transition: 0.5s;
 }
 .div-hide h1 {
   font-size: 1.1em;
-  color: #2D3642;
+  color: #0c2f59ff;
   cursor: default;
 }
 .div-hide i {
@@ -146,7 +135,7 @@ body, html {
   background-color: rgba(255, 255, 255, 0.5);
   transition: 0.5;
   cursor: pointer;
-  color: #2D3642;
+  color: #0c2f59ff;
 }
 .div-img > span:hover {
   transition: 0.5;

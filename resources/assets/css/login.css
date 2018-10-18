@@ -9,6 +9,82 @@ body, html {
   width: 100%;
   height: 100%;
 }
+.header-language {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  padding: 20px;
+}
+.header-language ul {
+  display: inline-block;
+  text-align: center;
+  padding: 0;
+}
+.header-language > ul{
+  height: 80px;
+}
+
+.header-language ul li {
+  list-style: none;
+}
+.idiomas-action {
+  font-family: 'Titillium Web';
+  padding: 2px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  transition: 0.5s;
+  color: #0c2f59ff;
+}
+
+.idiomas-action::after {
+  content: " \25be";
+  color: #ccc;
+}
+
+.toHidden{
+  display: none;
+}
+.list-idiomas {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 2%;
+}
+.list-idiomas li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list-idiomas img {
+  display: block;
+  width: 20px;
+  margin-right: 7px;
+}
+
+.list-idiomas li:hover {
+  background: #D9D9DE;
+  cursor: pointer;
+}
+
+.list-idiomas a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  color: #2D3642;
+  width: 100%;
+}
+.list-idiomas p {
+  margin: 0;
+}
+
+.list-idiomas a:hover {
+  text-decoration: none;
+}
 
 .section-form {
   width: 100%;
@@ -42,7 +118,7 @@ body, html {
   font-weight: 200;
 }
 
-.section-form>form input[type='email'], input[type='password'] {
+.section-form > form input[type='email'], input[type='password'] {
   border: none;
   width: 75%;
   margin: 0 auto;
@@ -64,13 +140,13 @@ body, html {
   color: #2D3642;
 } */
 
-.section-form>form input[type='email']:focus, input[type='password']:focus {
+.section-form > form input[type='email']:focus, input[type='password']:focus {
   outline: none;
   border-bottom: 1px solid #298464;
   transition: 0.4s;
 }
 
-.section-form>form button {
+.section-form > form button {
   border: none;
   width: 30%;
   margin: 0 auto;
@@ -78,14 +154,16 @@ body, html {
   border-radius: 4px;
   padding: 10px;
   cursor: pointer;
-  background-color: #298464;
+  background-color: rgba(234, 202, 47, 0.66);
+  color: #0c2f59ff;
 }
 
-.section-form>form button:hover {
-  background-color: #226D52;
+.section-form > form button:hover {
+  transition: 0.5s;
+  background-color: rgba(234, 202, 47, 0.45);
 }
 .a-cadastro {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   font-weight: 100;
@@ -93,14 +171,15 @@ body, html {
   padding: 5px 0;
   text-decoration: none;
   color: #2D3642;
-  background-color: #F0F1F5;
-  border-radius: 10px;
+  border-radius: 5px;
+  background-color: rgba(234, 202, 47, 0.35);
 }
 
 .a-cadastro:hover {
-  transition: 0.6s;
-  background-color: #DADBDF;
+  transition: 0.3s;
+  background-color: rgba(234, 202, 47, 0.20);
   text-decoration: none;
+  color: #2D3642;
 }
 
 .a-resetpass {
@@ -116,6 +195,9 @@ body, html {
   color: #686868;
 }
 
+.apresentacao {
+  background-color: #fff;
+}
 .page01, .page02, .page03 {
   width: 100%;
   height: 800px;
@@ -123,24 +205,31 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  background: red;
 }
 .page01 img, .page02 img, .page03 img {
   height: 200px;
 }
 .page01 p, .page02 p, .page02 > a, .page03 p {
   margin-top: 2%;
-  color: #474747;
+  color: #2D3642;
   font-weight: 600;
   font-size: 1.3em;
 }
 .page01 {
-  background-color: #F4C838;
+  background-color: #eaca2fa8;
 }
 .page02 {
-  background-color: #07A9A4;
+  background-color: #0c2f59cc;
 }
+.page02 > a, .page02 > p {
+  color: #f2f2f2;
+}
+
 .page02 a:hover {
-  color: #686868;
+  transition: 0.5s;
+  color: #bfbfbf;
 }
 @media screen and (max-width: 767px){
   .section-form h1 {

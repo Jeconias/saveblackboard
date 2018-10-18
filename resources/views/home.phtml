@@ -39,11 +39,11 @@
        <input type="submit" name="" value="send">
     </form>
     <nav class="navbar">
-      <p><?= $_SESSION['usuario']['login'] ?></p>
+      <p><?php //$_SESSION['usuario']['login'] ?></p>
         <ul>
-          <li id="upload" title="Subir imagem"><i class="fas fa-upload fa-2x"></i></li>
+          <li id="upload" title="<?= $language['uploadImg'] ?>"><i class="fas fa-upload fa-2x"></i></li>
           <li id="li-github" title="GitHub Jeconias Santos"><a href="https://github.com/jeconiassantos/saveblackboard" target="_blank"><i class="fab fa-github fa-2x"></i></a></li>
-          <li id="li-close" title="Encerrar sessão" ><a href="<?= PATH . '/login' ?>"><i class="fas fa-power-off fa-2x"></i></a></li>
+          <li id="li-close" title="<?= $language['logout'] ?>" ><a href="<?= PATH.'/'.$language['initial'].'/login' ?>"><i class="fas fa-power-off fa-2x"></i></a></li>
         </ul>
         <span id="span-loading">100%</span>
     </nav>
@@ -58,7 +58,7 @@
               echo '<section class="section-img">
               <div class="div-hide" data-div="'.strftime('%d/%b', strtotime($imagens[$a]['data'])).'">
               <h1>'.strftime('%d/%b', strtotime($imagens[$a]['data'])).'</h1>
-              <i class="fas fa-chevron-up"></i>
+              <i class="fas fa-chevron-down"></i>
               </div>';
           }
           echo '<div class="div-img">

@@ -12,7 +12,7 @@ final class home
     }
 
     public function upload($request, $response)
-    {
+    {        
         $directory = $_SERVER['DOCUMENT_ROOT'].PATH.'/resources/users/'.$_SESSION['usuario']['id'];
 
         if (!is_dir($directory)) {
@@ -45,15 +45,16 @@ final class home
             $crud->setSelectsql('SELECT LAST_INSERT_ID() FROM imagens');
             $id_file = $crud->getSelect()[0]['LAST_INSERT_ID()'];
             return json_encode(array(
-              'status' => true,
-              'file' => PATH.'/resources/users/'.$_SESSION['usuario']['id'].'/mine_'.$nomeFile.'.'.$Upload->file_dst_name_ext,
+              'msg'     => $this->container->idioma->getLanguageFilter('uploadImage'),
+              'status'  => true,
+              'file'    => PATH.'/resources/users/'.$_SESSION['usuario']['id'].'/mine_'.$nomeFile.'.'.$Upload->file_dst_name_ext,
               'id_file' => $id_file,
-              'data' => strftime('%d/%b', time())
+              'data'    => strftime('%d/%b', time())
             ));
         }
         return json_encode(array(
           'status' => false,
-          'error' => $Upload->error
+          'error'  => $Upload->error
         ));
     }
 
@@ -85,8 +86,9 @@ final class home
         return file_get_contents($diretorio);
     }
 
-    public function remove()
+    public function remove($request, $response)
     {
+        
       $remove = $this->container->crud;
       //PEGANDO O NOME DO ARQUIVO
       $remove->setSelect('imagens', array('imagem'), array('id' => $_POST['id']));
@@ -97,9 +99,15 @@ final class home
         //REMOVENDO O ARQUIVO DO SERVIDOR
         unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/resources/users/'.$_SESSION['usuario']['id'].'/'.$nome[0]['imagem']);
         unlink($_SERVER['DOCUMENT_ROOT'].PATH.'/resources/users/'.$_SESSION['usuario']['id'].'/mine_'.$nome[0]['imagem']);
-        return json_encode(true);
+        return json_encode(array(
+            'status' => true,
+            'msg' => $this->container->idioma->getLanguageFilter('removeImage')
+        ));
       }
-        return json_encode(false);
+        return json_encode(array(
+            'status' => false,
+            'msg' => $this->container->idioma->getLanguageFilter('removeImageFail')
+        ));
     }
     private function codeGenerator()
     {

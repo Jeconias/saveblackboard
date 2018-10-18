@@ -4,15 +4,14 @@ var pathArray = window.location.pathname.split('/');
 sortear();
 //DEFININDO O TAMANHO DE CADA SEXTION
 //$('.apresentacao > section').css('height', $(document).height());
-
 $('#form_login').submit(function(e) {
   var email = $('#email').val();
   var pass = $('#password').val();
 
   e.preventDefault();
-
+  
   $.ajax({
-    url: '/' + pathArray[1] + '/login',
+    url: '/' + pathArray[1] + '/' + pathArray[2] + '/login',
     method: 'post',
     type: 'json',
     data: ({
@@ -21,13 +20,12 @@ $('#form_login').submit(function(e) {
     }),
     success: function(data) {
       var obj = jQuery.parseJSON(data);
-      console.log(data);
-      if (obj === true) {
-        window.location.href = '/' + pathArray[1] + '/';
+      if (obj['status'] === true) {
+        window.location.href = '/' + pathArray[1] + '/' + pathArray[2];
       } else {
         $.notify({
           // options
-          message: obj
+          message: obj['msg']
         }, {
           // settings
           type: 'danger',
@@ -58,6 +56,11 @@ if ($('#email').val() != '') {
 } else {
   $('#email').focus();
 }
+
+//MOSTRAR LISTA DE IDIOMAS
+$('.idiomas-action').on('click', function(){
+  $('.toHidden').slideToggle();
+});
 
 function sortear() {
   var list = ['classroom.jpeg', 'story.jpeg', 'study.jpeg'];
